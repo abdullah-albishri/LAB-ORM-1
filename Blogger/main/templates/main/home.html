@@ -1,0 +1,26 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+<section class="home-section">
+    <div class="home-header">
+        <h1>Latest Posts</h1>
+        <a href="{% url 'blog:post_view' %}" class="btn-new-post">+ New Post</a>
+    </div>
+
+    {% if posts %}
+        <div class="posts-grid">
+            {% for post in posts %}
+            <article class="post-card">
+                <h2 class="post-title">{{ post.title }}</h2>
+                <p class="post-content">{{ post.content }}</p>
+                <span class="post-date">{{ post.published_at|date:"F j, Y" }} — {{ post.published_at|time:"H:i" }}</span>
+            </article>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="no-posts">
+            <p>No posts yet. <a href="{% url 'blog:post_view' %}">Be the first to write one!</a></p>
+        </div>
+    {% endif %}
+</section>
+{% endblock %}
