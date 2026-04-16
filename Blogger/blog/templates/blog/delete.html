@@ -1,0 +1,17 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+<section class="create-section">
+    <div class="create-card">
+        <h1 class="create-title">Delete Post</h1>
+        <p class="delete-confirm-text">هل تريد حذف البوست: <strong>{{ post.title }}</strong>؟</p>
+        <form method="POST" action="{% url 'blog:post_delete' post.pk %}">
+            {% csrf_token %}
+            <div class="form-actions">
+                <a href="{% url 'main:home' %}" class="btn-cancel">Cancel</a>
+                <button type="submit" class="btn-delete">Delete</button>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock %}
